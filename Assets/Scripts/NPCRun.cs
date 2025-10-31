@@ -6,7 +6,7 @@ public class NPCRun : MonoBehaviour
     NavMeshAgent agent;
     Animator anim;
     public Transform target;
-    public float ¶ZÂ÷ = 0;
+    public float distination = 0;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,13 +17,15 @@ public class NPCRun : MonoBehaviour
     }
     private void Update()
     {
-        if (target != null)
+        distination = Vector3.Distance(target.position, transform.position);
+
+        if (target != null && distination >= 10)
         {
             agent.SetDestination(target.position);
             print(target.position);
         }
-        ¶ZÂ÷ = Vector3.Distance(target.position, transform.position);
-        if(¶ZÂ÷ >=0.5f)
+        
+        if(distination >=10)
         {
             anim.SetBool("isWalk", true);
         }

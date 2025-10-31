@@ -159,6 +159,11 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            if(Input.GetMouseButtonDown(0))
+            {
+                _animator.SetTrigger("fire");
+            }
         }
 
         private void LateUpdate()
@@ -387,6 +392,20 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+        public GameObject HandGun;
+        Vector3 t = new Vector3(279.621399f, 4.9843874f, 90.6285934f);
+        Vector3 t2 = new Vector3(279.621307f, 4.98410749f, 18.6597919f);
+        public void StartFire()
+        {
+            print("1615");
+            HandGun.transform.Rotate(t2-t);
+            _controller.height = 1.6f;
+        }
+        public void EndFire()
+        {
+            HandGun.transform.Rotate(t-t2);
+            _controller.height = 1.8f;
         }
     }
 }
