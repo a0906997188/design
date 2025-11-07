@@ -22,10 +22,9 @@ public class NPCRun : MonoBehaviour
         if (target != null && distination >= 10)
         {
             agent.SetDestination(target.position);
-            print(target.position);
         }
         
-        if(distination >=10)
+        if(distination >=2)
         {
             anim.SetBool("isWalk", true);
         }

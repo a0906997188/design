@@ -8,12 +8,16 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+    
     [RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
 #endif
     public class ThirdPersonController : MonoBehaviour
     {
+        public Transform 發射點;
+        public GameObject 子彈預製物;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
@@ -398,7 +402,6 @@ namespace StarterAssets
         Vector3 t2 = new Vector3(279.621307f, 4.98410749f, 18.6597919f);
         public void StartFire()
         {
-            print("1615");
             HandGun.transform.Rotate(t2-t);
             _controller.height = 1.6f;
         }
@@ -406,6 +409,12 @@ namespace StarterAssets
         {
             HandGun.transform.Rotate(t-t2);
             _controller.height = 1.8f;
+        }
+        public void Shoot()
+        {
+            GameObject bullet = Instantiate(子彈預製物, 發射點.position,gameObject.transform.rotation);
+        bullet.transform.GetComponent<Rigidbody>().linearVelocity = this.gameObject.transform.forward * 100;
+            print(bullet.transform.position);
         }
     }
 }
