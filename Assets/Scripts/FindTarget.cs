@@ -25,7 +25,7 @@ public class FindTarget : MonoBehaviour
                 最終目標.transform.position = 敵人座標;
             }
         }
-        if(敵人列表.Length == 0)
+        if(敵人列表.Length == 0 || 最近的敵人 == null )
         {
             最終目標.transform.localPosition = new Vector3(0,1.6f,5.1f);
         }
