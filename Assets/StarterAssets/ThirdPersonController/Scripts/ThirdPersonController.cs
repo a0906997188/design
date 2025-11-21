@@ -410,11 +410,21 @@ namespace StarterAssets
             HandGun.transform.Rotate(t-t2);
             _controller.height = 1.8f;
         }
+
         public void Shoot()
         {
-            GameObject bullet = Instantiate(子彈預製物, 發射點.position,gameObject.transform.rotation);
-        bullet.transform.GetComponent<Rigidbody>().linearVelocity = this.gameObject.transform.forward * 100;
-            print(bullet.transform.position);
+            Transform target = GameObject.Find("Target").transform;
+
+            if (target == null) return;
+
+            Vector3 dir = (target.position - 發射點.position).normalized;
+
+            GameObject bullet = Instantiate(子彈預製物, 發射點.position, Quaternion.LookRotation(dir));
+
+            bullet.GetComponent<Rigidbody>().linearVelocity = dir * 100f;
+
+            Destroy(bullet, 4f);
         }
+
     }
 }
