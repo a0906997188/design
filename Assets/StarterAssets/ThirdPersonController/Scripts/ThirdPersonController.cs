@@ -208,7 +208,7 @@ namespace StarterAssets
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
-                _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
+                _cinemachineTargetPitch -= _input.look.y * deltaTimeMultiplier;
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -421,7 +421,7 @@ namespace StarterAssets
 
             GameObject bullet = Instantiate(子彈預製物, 發射點.position, Quaternion.LookRotation(dir));
 
-            bullet.GetComponent<Rigidbody>().linearVelocity = dir * 100f;
+            bullet.GetComponent<Rigidbody>().linearVelocity = dir * 30f;
 
             Destroy(bullet, 4f);
         }

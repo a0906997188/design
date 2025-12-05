@@ -1,13 +1,18 @@
 using UnityEngine;
 using Unity.AI;
 using UnityEngine.AI;
+using TMPro;
 public class NPCRun : MonoBehaviour
 {
     NavMeshAgent agent;
     Animator anim;
     public Transform target;
     public float distination = 0;
-    
+
+    public TMP_Text HP_text;
+    public int HP = 100;
+    public Transform blood;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,12 +24,12 @@ public class NPCRun : MonoBehaviour
     {
         distination = Vector3.Distance(target.position, transform.position);
 
-        if (target != null && distination >= 10)
+        if (target != null && distination >= 2)
         {
             agent.SetDestination(target.position);
         }
         
-        if(distination >=2)
+        if(distination >=1)
         {
             anim.SetBool("isWalk", true);
         }
@@ -34,5 +39,20 @@ public class NPCRun : MonoBehaviour
         }
 
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+            HP -= 10;
+            HP_text.text =  HP.ToString();
+            blood.localScale = new Vector3(HP / 100f, 1, 1);
+            if (HP <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
