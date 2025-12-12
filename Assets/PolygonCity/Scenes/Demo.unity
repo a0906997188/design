@@ -16693,6 +16693,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Remy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 72d81299cc7a1ba40888c99df73d7bb5, type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 1852576806548013000, guid: 72d81299cc7a1ba40888c99df73d7bb5, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.0000005438921
@@ -16729,11 +16733,11 @@ PrefabInstance:
       propertyPath: m_WarningMessage
       value: "\nBinding warning: Some generic clip(s) animate transforms that are
         already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
-        'mixamorig:RightFoot'\n\tTransform 'mixamorig:LeftUpLeg'\n\tTransform 'mixamorig:LeftArm'\n\tTransform
-        'mixamorig:RightHand'\n\tTransform 'mixamorig:RightShoulder'\n\tand more
-        ...\n\tFrom animation clip 'Pistol Idle'"
+        by Humanoid clips.\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:Head'\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:RightShoulder'\n\tTransform
+        'mixamorig:Neck'\n\tTransform 'mixamorig:Spine'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:RightArm'\n\tand more ...\n\tFrom
+        animation clip 'Pistol Idle'"
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 72d81299cc7a1ba40888c99df73d7bb5, type: 3}
       propertyPath: m_ApplyRootMotion
@@ -27244,7 +27248,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1.2
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -121292,6 +121296,8 @@ MonoBehaviour:
   m_RigLayers:
   - m_Rig: {fileID: 476355785}
     m_Active: 1
+  - m_Rig: {fileID: 0}
+    m_Active: 1
   m_Effectors: []
 --- !u!114 &821346087
 MonoBehaviour:
@@ -153300,13 +153306,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3911813388703203424, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 821346085}
     - target: {fileID: 4416926081852918481, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: m_Name
       value: NPC (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918481, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918481, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918490, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867340419078307230, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -180714,11 +180736,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 468664, guid: a0fc9668797c0ba40bfd0a39fc67f2ed, type: 3}
   m_PrefabInstance: {fileID: 1241859775}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1242104498 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 490576248761790154, guid: c708a3b79cd542b42bbfedb17e213bc1, type: 3}
-  m_PrefabInstance: {fileID: 52573398}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1242569323 stripped
 Transform:
@@ -231805,7 +231822,7 @@ PrefabInstance:
     - target: {fileID: 3911813388703203424, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1242104498}
+      objectReference: {fileID: 821346085}
     - target: {fileID: 3911813388703203424, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: distination
       value: 0
@@ -231818,10 +231835,17 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 7867340419078307230, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6134277258367208628, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
 --- !u!4 &1587285315 stripped
 Transform:
@@ -245161,7 +245185,7 @@ PrefabInstance:
     - target: {fileID: 3911813388703203424, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 1242104498}
+      objectReference: {fileID: 821346085}
     - target: {fileID: 3911813388703203424, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: distination
       value: 0
@@ -245171,8 +245195,16 @@ PrefabInstance:
       value: NPC (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4416926081852918481, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918481, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
       propertyPath: m_TagString
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867340419078307230, guid: c375ac49a92337149bb389626f6ccf00, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -247730,6 +247762,55 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 260ea4bf1ba71314c9c3833b491586bc, type: 3}
+--- !u!1 &1701225400
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1701225402}
+  - component: {fileID: 1701225401}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!320 &1701225401
+PlayableDirector:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701225400}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_PlayableAsset: {fileID: 0}
+  m_InitialState: 1
+  m_WrapMode: 2
+  m_DirectorUpdateMode: 1
+  m_InitialTime: 0
+  m_SceneBindings: []
+  m_ExposedReferences:
+    m_References: []
+--- !u!4 &1701225402
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701225400}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.07000005, z: -4.37}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1701464623
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -315167,3 +315248,4 @@ SceneRoots:
   - {fileID: 1587231238}
   - {fileID: 1684232746}
   - {fileID: 1057459930}
+  - {fileID: 1701225402}

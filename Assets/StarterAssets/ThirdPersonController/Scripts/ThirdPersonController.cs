@@ -207,7 +207,7 @@ namespace StarterAssets
                 //Don't multiply mouse input by Time.deltaTime;
                 float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
+                _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier * 5;
                 _cinemachineTargetPitch -= _input.look.y * deltaTimeMultiplier;
             }
 
@@ -421,7 +421,7 @@ namespace StarterAssets
 
             GameObject bullet = Instantiate(子彈預製物, 發射點.position, Quaternion.LookRotation(dir));
 
-            bullet.GetComponent<Rigidbody>().linearVelocity = dir * 30f;
+            bullet.GetComponent<Rigidbody>().linearVelocity = dir * 60f;
 
             Destroy(bullet, 4f);
         }
