@@ -1,4 +1,5 @@
-﻿ using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -158,6 +159,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            if (isDying) return;
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
@@ -172,8 +174,45 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            HpAimToCamera();
             CameraRotation();
         }
+        [Space(10f)]
+        public bool isDying = false;
+        public float HP = 100f;
+        public float MaxHP = 100f;
+        public TMP_Text HP_text;
+        public Transform blood;
+        
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("EnemyAttack") && !isDying)
+            {
+                HP -= 10;
+                if(HP_text!=null) HP_text.text = HP.ToString();
+                if(blood!=null) blood.localScale = new Vector3((float)HP / (float)MaxHP, 1, 1);
+
+                if (HP <= 0)
+                {
+                    _animator.SetBool("isDying", true);
+                    isDying = true;
+                    gameObject.GetComponent<Collider>().enabled = false;
+                    gameObject.tag = "Untagged";
+                    Destroy(gameObject, 3f);
+                }
+                else
+                {
+                    _animator.SetTrigger("isHit");
+                }
+            }
+        }
+        public GameObject HPBar;
+        public void HpAimToCamera()
+        {
+            HPBar.transform.forward = _mainCamera.transform.forward;
+        }
+
+
 
         private void AssignAnimationIDs()
         {
@@ -425,6 +464,7 @@ namespace StarterAssets
 
             Destroy(bullet, 4f);
         }
+
 
     }
 }

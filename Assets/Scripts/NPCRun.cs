@@ -28,10 +28,13 @@ public class NPCRun : MonoBehaviour
         HP_text.text = MaxHP.ToString();
         HP = MaxHP;
         agent.stoppingDistance = §ðÀ»¶ZÂ÷;
+
+        target = GameObject.FindWithTag("Player").transform;
     }
 
     private void Update()
     {
+        if(target!=null)
         distination = Vector3.Distance(target.position, transform.position);
 
         // ¶]¨B
@@ -83,6 +86,8 @@ public class NPCRun : MonoBehaviour
             {
                 anim.SetBool("isDying", true);
                 isDying = true;
+                gameObject.GetComponent<Collider>().enabled = false;
+                gameObject.tag = "Untagged";
                 Destroy(gameObject, 3f);
             }
             else
@@ -90,5 +95,15 @@ public class NPCRun : MonoBehaviour
                 anim.SetTrigger("isHit");
             }
         }
+    }
+
+    public GameObject blade;
+    public void BladeHide()
+    {
+        blade.GetComponent<Collider>().enabled = false;
+    }
+    public void BladeEnable()
+    {
+        blade.GetComponent<Collider>().enabled = true;
     }
 }
