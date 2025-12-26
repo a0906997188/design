@@ -100,10 +100,12 @@ public class NPCRun : MonoBehaviour
     public GameObject blade;
     public void BladeHide()
     {
+        if(blade!=null)
         blade.GetComponent<Collider>().enabled = false;
     }
     public void BladeEnable()
     {
-        blade.GetComponent<Collider>().enabled = true;
+        if (blade != null)
+            blade.GetComponent<Collider>().enabled = true;
     }
 }

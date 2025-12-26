@@ -24,7 +24,7 @@ namespace StarterAssets
         public float MoveSpeed = 2.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        public float SprintSpeed = 10f;
 
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
@@ -165,7 +165,6 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
-
             if(Input.GetMouseButtonDown(0))
             {
                 _animator.SetTrigger("fire");
@@ -174,7 +173,6 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
-            HpAimToCamera();
             CameraRotation();
         }
         [Space(10f)]
@@ -206,11 +204,7 @@ namespace StarterAssets
                 }
             }
         }
-        public GameObject HPBar;
-        public void HpAimToCamera()
-        {
-            HPBar.transform.forward = _mainCamera.transform.forward;
-        }
+        
 
 
 

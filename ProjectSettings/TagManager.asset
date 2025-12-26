@@ -8,11 +8,12 @@ TagManager:
   - Enemy
   - Bullet
   - EnemyAttack
+  - Patroller
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - shelter
   - Water
   - UI
   - 
