@@ -1,5 +1,4 @@
-using UnityEngine;
-using Unity.AI;
+ï»¿using UnityEngine;
 using UnityEngine.AI;
 using TMPro;
 
@@ -7,7 +6,6 @@ public class NPCRun : MonoBehaviour
 {
     NavMeshAgent agent;
     Animator anim;
-    public Transform target;
     public float distination = 0;
 
     public TMP_Text HP_text;
@@ -15,62 +13,62 @@ public class NPCRun : MonoBehaviour
     public int MaxHP = 100;
     public Transform blood;
 
-    public float §ğÀ»®É¶¡ = 1.5f; // §ğÀ»¶¡¹j¬í¼Æ
-    private float §ğÀ»­Ë¼Æ = 0f;  // ­Ë¼Æ­p®É¾¹
-    public float §ğÀ»¶ZÂ÷ = 1.2f;
+    public float æ”»æ“Šæ™‚é–“ = 1.5f;
+    private float æ”»æ“Šå€’æ•¸ = 0f;
+    public float æ”»æ“Šè·é›¢ = 1.2f;
 
     private bool isDying = false;
+
+    public GameObject blade;
+
+    æ•µäººçš„å·¡é‚ patrol;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        patrol = GetComponent<æ•µäººçš„å·¡é‚>();
+
         HP_text.text = MaxHP.ToString();
         HP = MaxHP;
-        agent.stoppingDistance = §ğÀ»¶ZÂ÷;
-
-        target = GameObject.FindWithTag("Player").transform;
+        agent.stoppingDistance = æ”»æ“Šè·é›¢;
     }
 
     private void Update()
     {
-        if(target!=null)
-        distination = Vector3.Distance(target.position, transform.position);
+        //if (isDying)
+        //    return;
 
-        // ¶]¨B
-        if (target != null && distination >= §ğÀ»¶ZÂ÷ && !isDying)
-        {
-            agent.SetDestination(target.position);
-        }
+        //if (patrol != null && patrol.ç™¼ç¾ç©å®¶ && patrol.ç©å®¶ä½ç½® != null)
+        //{
+        //    distination = Vector3.Distance(patrol.ç©å®¶ä½ç½®.position, transform.position);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isAttack", false);
+        //    return;
+        //}
 
-        // §ğÀ»§N«o­p®É¡]¨C´V­Ë¼Æ¡^
-        if (§ğÀ»­Ë¼Æ > 0)
-        {
-            §ğÀ»­Ë¼Æ -= Time.deltaTime;
-        }
+        //if (æ”»æ“Šå€’æ•¸ > 0)
+        //{
+        //    æ”»æ“Šå€’æ•¸ -= Time.deltaTime;
+        //}
 
-        // §PÂ_¬O§_§ğÀ»©Î¨«¸ô
-        if (distination >= §ğÀ»¶ZÂ÷ && !isDying)
-        {
-            anim.SetBool("isAttack", false);
-            anim.SetBool("isWalk", true);
-        }
-        else
-        {
-            anim.SetBool("isWalk", false);
+        //if (distination >= æ”»æ“Šè·é›¢)
+        //{
+        //    anim.SetBool("isAttack", false);
+        //    anim.SetBool("isWalk", true);
+        //}
+        //else
+        //{
+        //    anim.SetBool("isWalk", false);
 
-            // §ğÀ»§N«o§¹¦¨¤~¯à§ğÀ»
-            if (§ğÀ»­Ë¼Æ <= 0f)
-            {
-                anim.SetBool("isAttack", true);
-
-                // ­«³]§ğÀ»§N«o®É¶¡
-                §ğÀ»­Ë¼Æ = §ğÀ»®É¶¡;
-
-                // >>> ¦b³o¸Ì°µ¡§³y¦¨¶Ë®`¡¨ªº¨Æ±¡ <<<
-                // ¨Ò¦p¡G player.TakeDamage(10);
-            }
-        }
+        //    if (æ”»æ“Šå€’æ•¸ <= 0f)
+        //    {
+        //        anim.SetBool("isAttack", true);
+        //        æ”»æ“Šå€’æ•¸ = æ”»æ“Šæ™‚é–“;
+        //    }
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -84,9 +82,13 @@ public class NPCRun : MonoBehaviour
 
             if (HP <= 0)
             {
-                anim.SetBool("isDying", true);
                 isDying = true;
-                gameObject.GetComponent<Collider>().enabled = false;
+                anim.SetBool("isDying", true);
+
+                if (patrol != null)
+                    patrol.enabled = false;
+
+                GetComponent<Collider>().enabled = false;
                 gameObject.tag = "Untagged";
                 Destroy(gameObject, 3f);
             }
@@ -97,12 +99,12 @@ public class NPCRun : MonoBehaviour
         }
     }
 
-    public GameObject blade;
     public void BladeHide()
     {
-        if(blade!=null)
-        blade.GetComponent<Collider>().enabled = false;
+        if (blade != null)
+            blade.GetComponent<Collider>().enabled = false;
     }
+
     public void BladeEnable()
     {
         if (blade != null)

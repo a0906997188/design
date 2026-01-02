@@ -50,10 +50,10 @@ public class EnemyView : MonoBehaviour
             if (Physics.Raycast(射線起點, 射線方向, out RaycastHit hit, 視覺距離, 視線遮蔽圖層))
             {
                 扇形頂點[i + 1] = 增強方向 * hit.distance;
-                print(hit.transform.tag);
+                //print(hit.transform.tag);
                 if (hit.transform.tag == "Player")
                 {
-                    print("發現玩家");
+                    //print("發現玩家");
                     playerPos = hit.transform;
                     StartCoroutine(發現後的暫停());
                 }

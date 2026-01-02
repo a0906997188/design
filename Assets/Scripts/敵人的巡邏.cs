@@ -35,6 +35,7 @@ public class 敵人的巡邏 : MonoBehaviour
             導航.stoppingDistance = 1.5f;
             if (Vector3.Distance(this.transform.position, 玩家位置.position) < 導航.stoppingDistance)
             {
+                動畫控制器.ResetTrigger("isAttack");
                 動畫控制器.SetTrigger("isAttack");
                 動畫控制器.SetBool("isWalk", false);
                 //transform.LookAt(玩家位置.position);
@@ -51,6 +52,8 @@ public class 敵人的巡邏 : MonoBehaviour
                 {
                     導航.stoppingDistance = 0.5f;
                     發現玩家 = false;
+                    動畫控制器.SetBool("isAttack", false);
+                    動畫控制器.SetBool("isWalk", true);
                     換目標();
                 }
                 else
